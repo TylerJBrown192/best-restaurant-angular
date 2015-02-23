@@ -7,6 +7,7 @@
   <script src="app.js"></script>
   <script src="js/RestaurantController.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container" ng-controller="RestaurantCtrl">
@@ -19,7 +20,6 @@
           </div>
         </form>
       </div>
-    </div>
       <div class="col-md-4">
         <h2>New Restaurant</h2>
         <form ng-submit="addRestaurant()" class="form-inline" role="form">
@@ -35,22 +35,39 @@
           <div class="form-group">
             <input type="text" ng-model="restaurantComments" class="form-control" placeholder="Enter comments">
           </div>
+          <br><br>
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
       </div>
 
+      <div class="col-md-2">
+      </div>
+
       <div class="col-md-6">
         <h2>Restaurant List</h2>
+        <p>( Click to display further info )</p>
         <ul>
-          <li ng-repeat="item in restaurants | filter:query">
-            <span ng-click="display = true">
+          <li ng-repeat="item in restaurants | filter:query" class="list-item">
+            <span ng-click="display = true" class="item-name"  ng-hide="editing">
               {{item.name}}
-            </span><br>
-            <span ng-show="display" ng-click="display = false">
+            </span>
+            <a ng-click="editing = true" ng-hide="editing">Edit</a>
+            <span ng-show="editing" ng-submit="editing = false">
+              <form class="form-inline" role="form">
+                <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Edit name">
+                <input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Edit type">
+                <input type="text" class="form-control input-sm" ng-model="item.price" placeholder="Edit price">
+                <input type="text" class="form-control input-sm" ng-model="item.comments" placeholder="Edit comments">
+                <button class="btn btn-default btn-sm" type="submit">Save</button>
+              </form>
+            </span>
+            <br>
+            <span ng-show="display" ng-click="display = false" class="item-descrip">
               {{item.type}} <br>
               {{item.price}} <br>
-              {{item.comments}}<br>
-              </span>
+              Comments: {{item.comments}}<br>
+              <p class="small">( Click info to hide )</p>
+            </span>
           </li>
         </ul>
       </div>

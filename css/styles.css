@@ -1,0 +1,21 @@
+.item-name {
+  cursor: pointer;
+  color: #0088cc;
+}
+
+.item-name:hover {
+  text-decoration: underline;
+}
+
+.item-descrip {
+  cursor: pointer;
+  color: #2fad3b;
+}
+
+.item-descrip:hover {
+  text-decoration: underline;
+}
+
+.small {
+  font-size: 70%;
+}
